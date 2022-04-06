@@ -43,8 +43,8 @@ done
 
 
 cd ${APP_HOME}
-echo "启动命令: java $JAVA_PROPERTIES $JAVA_OPTS -cp $CLASSPATH com.mogujie.algo.taichi.server.TaichiServerApplication" > taichi_server.start.log
-nohup java $JAVA_PROPERTIES $JAVA_OPTS -cp $CLASSPATH com.mogujie.algo.taichi.server.TaichiServerApplication >> taichi_server.start.log &
+echo "启动命令: java $JAVA_PROPERTIES $JAVA_OPTS -cp $CLASSPATH com.mogujie.algo.taichi.server.TaichiServerApplication" > ./log/taichi_server.start.log
+nohup java $JAVA_PROPERTIES $JAVA_OPTS -cp $CLASSPATH com.mogujie.algo.taichi.server.TaichiServerApplication >> ./log/taichi_server.start.log &
 echo '正在启动...'
 sleep 2s
 
