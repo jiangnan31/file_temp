@@ -5,4 +5,5 @@ GIT_SOURCE_HOME=/home/mapp/github_file_temp
 
 TARGET_HOME=/home/mapp/taichi-server
 
+git pull
 cp -rf ./taichi-server/* $TARGET_HOME
