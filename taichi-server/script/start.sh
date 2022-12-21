@@ -6,27 +6,26 @@ sleep 2s
 JAVA_PROPERTIES=" -Djava.awt.headless=true -Djava.net.preferIPv4Stack=true "
 JAVA_OPTS="-server"
 
-JAVA_OPTS="${JAVA_OPTS} -Xms2g -Xmx2g"
-JAVA_OPTS="${JAVA_OPTS} -Xmn2g"
-
 # 根据hostname名确认当前环境,设定资源,追加参数
 CUSTOM_JAVA_PROPERTIES="-Dcurrent.active.env=unknow "
 if [[ "$(hostname)" == "pre-orca"* ]]; then
   JAVA_OPTS="${JAVA_OPTS} -Xms2g -Xmx2g"
   JAVA_OPTS="${JAVA_OPTS} -Xmn1g"
   CUSTOM_JAVA_PROPERTIES="-Dcurrent.active.env=pre "
+  JAVA_OPTS="${JAVA_OPTS} -XX:PermSize=96m -XX:MaxPermSize=256m"
 elif [[ "$(hostname)" == "weshop-taichi-gpu"* ]]; then
   JAVA_OPTS="${JAVA_OPTS} -Xms2g -Xmx2g"
   JAVA_OPTS="${JAVA_OPTS} -Xmn1g"
   CUSTOM_JAVA_PROPERTIES="-Dcurrent.active.env=online_gpu "
+  JAVA_OPTS="${JAVA_OPTS} -XX:PermSize=96m -XX:MaxPermSize=256m"
 else
-  JAVA_OPTS="${JAVA_OPTS} -Xms2g -Xmx2g"
-  JAVA_OPTS="${JAVA_OPTS} -Xmn1g"
+  JAVA_OPTS="${JAVA_OPTS} -Xms8g -Xmx8g"
+  JAVA_OPTS="${JAVA_OPTS} -Xmn4g"
   CUSTOM_JAVA_PROPERTIES="-Dcurrent.active.env=online "
+  JAVA_OPTS="${JAVA_OPTS} -XX:PermSize=512m -XX:MaxPermSize=1024m"
 fi
 JAVA_PROPERTIES="$JAVA_PROPERTIES $CUSTOM_JAVA_PROPERTIES"
 
-JAVA_OPTS="${JAVA_OPTS} -XX:PermSize=96m -XX:MaxPermSize=256m"
 JAVA_OPTS="${JAVA_OPTS} -XX:SurvivorRatio=10"
 JAVA_OPTS="${JAVA_OPTS} -XX:+UseConcMarkSweepGC -XX:+UseCMSCompactAtFullCollection -XX:CMSMaxAbortablePrecleanTime=5000 -XX:+CMSClassUnloadingEnabled -XX:CMSInitiatingOccupancyFraction=80"
 JAVA_OPTS="${JAVA_OPTS} -XX:+DisableExplicitGC"
