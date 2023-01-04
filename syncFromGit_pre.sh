@@ -7,5 +7,6 @@ TARGET_HOME=/home/mapp/taichi-server
 
 git pull
 rm -rf $TARGET_HOME/lib/*
+cp -rf ./taichi-server/lib/* $TARGET_HOME/lib/
 cp -rf ./taichi-server-pre/* $TARGET_HOME
 cp -rf $TARGET_HOME/lib_extend/* $TARGET_HOME/lib/
